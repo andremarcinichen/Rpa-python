@@ -33,37 +33,50 @@ def pag_inicial():
         xpath='/html/body/table[2]/tbody/tr/td/div[1]/table/tbody/tr/td/table[3]/tbody/tr/td/a/span/span'
         navegador.find_element(By.XPATH, xpath).click()
         p.sleep(2)
-    except:
-        print('Ruim na Pag inicial')
+    except  Exception as e:
+        print('Erro na Pagina inicial')
+        print(e)
 
 def pagina2():
     try:
-        # '//*[@onclick="contador_acesso(19)"]'
-        #/html/body/table[5]/tbody/tr/td/div[1]/div[34]/a
-        # xpath='/html/body/table[5]/tbody/tr/td/div[1]/div[34]/a'
         xpath='/html/body/table[5]/tbody/tr/td/div[1]/div[34]/a/table/tbody/tr/td[2]/span[1]'
         elemento=navegador.find_element(By.XPATH, xpath)
-        p.sleep(3)
-        elemento.click()
-        print(elemento)
-        p.sleep(3)
+        navegador.execute_script("arguments[0].scrollIntoView();", elemento)
+        navegador.execute_script("arguments[0].click();", elemento) 
+        p.sleep(5)
 
     except  Exception as e:
-        print('Ruim na Pagina 2')
+        print('Erro na Pagina 2')
         print(e)
 
-# def pagina3():
-#     try:
-#         xpath= "//option[text()='Licitações']"
-#         p.sleep(5)
-#         navegador.find_element(By.XPATH,xpath).click()
-#         p.sleep(5)
-#     except:
-#         print('Ruim na Pagina 3')
+def pagina3():
+    try:
+        navegador.switch_to.window(navegador.window_handles[1])
+        xpath= "/html/body/div[1]/section/div/div[1]/div/div/div[2]/div/div/a[1]"
+        elemento=navegador.find_element(By.XPATH,xpath).click()
+        navegador.execute_script("arguments[0].click();", elemento) 
+        p.sleep(10)
+    except Exception as e:
+        print('Erro na Pagina 3')
+        print(e)
+
+def botaodownload():
+    try:
+        xpath= " /html/body/div[1]/section/div/div[2]/div[1]/table/tbody/tr[1]/td[3]/a"
+        elemento=navegador.find_element(By.XPATH,xpath).click()
+        p.sleep(1)
+    except Exception as e:
+        print('Erro no download')
+        print(e)
+
+
+
+       
 
 pag_inicial()
 pagina2()
-# pagina3()
+pagina3()
+botaodownload()
 
 
 
