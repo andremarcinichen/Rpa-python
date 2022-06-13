@@ -1,0 +1,1 @@
+C:/Python310/python.exe "c:/Users/andre/Downloads/Rpa python/robo6_tabela_E_dados.py"
